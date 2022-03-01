@@ -14,7 +14,7 @@
 -->
 
 <?php
-include("auList.php")
+include("tiList.php")
 ?> 
 
 
@@ -56,7 +56,7 @@ include("auList.php")
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="authors">
+          <a class="nav-link text-white" href="authors">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">groups</i>
             </div>
@@ -72,7 +72,7 @@ include("auList.php")
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="books">
+          <a class="nav-link text-white active bg-gradient-primary" href="books">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">collections_bookmark</i>
             </div>
@@ -127,7 +127,7 @@ include("auList.php")
               <div class="card-header pb-0">
                 <div class="row">
                   <div class="col-lg-6 col-7">
-                    <h6>Authors</h6>
+                    <h6>Books</h6>
                     <p class="text-sm mb-0">
                     <!--i class="fa fa-check text-info" aria-hidden="true"></i-->
                       <!--span class="font-weight-bold ms-1">30 done</span> this month-->
@@ -152,47 +152,47 @@ include("auList.php")
                   <table class="table align-items-center mb-0">
                     <thead>
                       <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">City</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">State</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Zip</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Contract</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Type</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Publisher</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Advance</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Royalty</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">YTD_Sales</th>
                       </tr>
                     </thead>
                     <tbody>
 		<!--i PHP IN HERE -->
                     <?php
-                    if(is_array($author)){      
+                    if(is_array($titles)){      
                     //$sn=1;
-                    foreach($author as $au){
+                    foreach($titles as $ti){
                     ?>
                       <tr>
                         <td>
                           <div class="d-flex px-2 py-1">
                             <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm"><?php echo $au['au_fname']; ?> <?php echo $au['au_lname']; ?></h6>
+                              <h6 class="mb-0 text-sm"><?php echo $ti['title']; ?></h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <h6 class="mb-0 text-sm"><?php echo $au['phone']; ?></h6>
+                          <h6 class="mb-0 text-sm"><?php echo $ti['type']; ?></h6>
                         </td>
                         <td class="align-middle text-center text-sm">
-                          <h6 class="mb-0 text-sm"><?php echo $au['address']; ?></h6>
+                          <h6 class="mb-0 text-sm"><?php echo $ti['pub_name']; ?></h6>
                         </td>
                         <td class="align-middle">
-                          <h6 class="mb-0 text-sm"><?php echo $au['city']; ?></h6>
+                          <h6 class="mb-0 text-sm">$<?php echo $ti['price']; ?></h6>
                         </td>
                         <td class="align-middle">
-                          <h6 class="mb-0 text-sm"><?php echo $au['state']; ?></h6>
+                          <h6 class="mb-0 text-sm">$<?php echo $ti['advance']; ?></h6>
                         </td>
                         <td class="align-middle">
-                          <h6 class="mb-0 text-sm"><?php echo $au['zip']; ?></h6>
+                          <h6 class="mb-0 text-sm"><?php echo $ti['royalty']; ?>%</h6>
                         </td>
                         <td class="align-middle">
-                          <h6 class="mb-0 text-sm">NULL</h6>
+                          <h6 class="mb-0 text-sm"><?php echo $ti['ytd_sales']; ?></h6>
                         </td>
                       </tr>
                       <?php }} ?>
