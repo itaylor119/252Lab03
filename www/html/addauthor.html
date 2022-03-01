@@ -35,7 +35,37 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
 </head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+// https://www.geeksforgeeks.org/how-to-submit-a-form-using-ajax-in-jquery/
+$(document).ready(function(){
+    $("form").on("submit", function(event){
+        event.preventDefault(); // use AJAX
+ 
+        var formValues= $(this).serialize();
 
+        $.ajax({
+                method: "POST",
+                url: '/authorg', // buggy
+                data: formValues,
+                cache: false,
+                success: function(data) {
+                      
+                    // Ajax call completed successfully
+
+                    $('#result').html(data);
+
+                    alert("success");
+                },
+                error: function(data) {
+                      
+                    // Some error in ajax call
+                    alert("fail");
+                }
+            });
+    });
+});
+</script>
 <body class="g-sidenav-show  bg-gray-200">
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
@@ -117,21 +147,21 @@
           <!-- Cool stuff goes here yeeeeeeeeeeeeeeeeeeeaaaaaaaaaaahhhhhhhhhhh-->
           
 
-          <form action="postauthor.php" method="POST"> <!-- Form begins here -->
+          <form action="authorController.php" method="POST"> <!-- Form begins here -->
             <div class="form-group">
               <div class="form-group input-group input-group-outline col-md-6">
                 <label class="form-label" for="inputFname">First Name</label>
-                <input type="email" class="form-control" id="inputFname">
+                <input type="text" class="form-control" id="inputFname">
               </div>
               <br>
               <div class="form-group input-group input-group-outline col-md-6">
                 <label class="form-label" for="inputLname">Last Name</label>
-                <input type="email" class="form-control" id="inputLname">
+                <input type="text" class="form-control" id="inputLname">
               </div>
               <br>
               <div class="form-group input-group input-group-outline col-md-6">
                 <label class="form-label" for="inputPhone">Phone</label>
-                <input type="password" class="form-control" id="inputPhone">
+                <input type="text" class="form-control" id="inputPhone">
               </div>
               <br>
             </div>
