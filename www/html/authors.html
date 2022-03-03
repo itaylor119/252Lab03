@@ -2,19 +2,17 @@
 =========================================================
 * Material Dashboard 2 - v3.0.0
 =========================================================
-
 * Product Page: https://www.creative-tim.com/product/material-dashboard
 * Copyright 2021 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://www.creative-tim.com/license)
 * Coded by Creative Tim
-
 =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 
 <?php
-include("auList.php")
+$action = 0;
+include("repo.php")
 ?> 
 
 
@@ -62,8 +60,8 @@ $(document).ready(function(){
                     // Ajax call completed successfully
 
                     $('#result').html(data);
-
-                    alert("success");
+                    //alert("success");
+                    //alert(data);
                 },
                 error: function(data) {
                       
@@ -204,6 +202,7 @@ $(document).ready(function(){
                     if(is_array($author)){      
                     //$sn=1;
                     foreach($author as $au){
+                      $query_string = '?lname=' . urlencode($au['au_lname']) . '&fname=' . urlencode($au['au_fname']);
                     ?>
                       <tr>
                         <form>
@@ -230,10 +229,17 @@ $(document).ready(function(){
                           <h6 class="mb-0 text-sm"><?php echo $au['zip']; ?></h6>
                         </td>
                         <td class="align-middle">
-                          <h6 class="mb-0 text-sm">NULL</h6>
+                          <h6 class="mb-0 text-sm"><?php if ($au['contract'] == 1)
+                                                          {
+                                                            echo 'True';
+                                                          }
+                                                          else
+                                                          {
+                                                            echo 'False';
+                                                          } ?></h6>
                         </td>
                         <td class="align-middle">
-                          <input type="submit" value="Details">
+                          <?php echo '<a href = "http://127.0.0.1/authord' . htmlentities($query_string) . '" class="button"> Details </a>'; ?>
                         </td>
                         <input type="hidden" id="id" value="<?php echo $au['au_id']; ?>">
                         </form>

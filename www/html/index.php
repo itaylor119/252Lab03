@@ -12,7 +12,7 @@ $router = new router();
 
 $router->get("/", function (){
 
-    require_once 'home.html'; 
+    require_once 'template.html'; 
 }); 
 
 $router->get('/about', function (){
@@ -21,29 +21,6 @@ $router->get('/about', function (){
     echo 'about page'; 
 
 }); 
-
-$router->get('/ajax', function (){
-
-	require_once 'ajax.html';
-});
-
-$router->get('/test1', function(){
-
-	require_once 'test1.php';
-});
-
-$router->get('/test', function(){
-	require_once 'test.php';
-});
-
-$router->get('/getAuthors', function(){
-	require_once 'pdo_1_authors.php';
-});
-
-$router->get('/author', function (){
-
-	require_once 'author.html';
-});
 
 $router->get('/authors', function(){
 	require_once 'authors.html';
@@ -59,16 +36,14 @@ $router->addNotFoundHandler( function ()
 }
 );
 
-$router->get('/home', function(){
-	require_once 'Template.html';
+$router->get('/authord', function($url){
+	require_once 'authorDetail.html';
 });
 
 $router->get('/authorg', function ($url){
-//	if (isset($router->get['help'])
 	if ($url)
 {
-//	echo 'help passed.' . '</br>';
-//	var_dump($url);
+
 	require_once 'test2.php';
 }
 	else
@@ -76,22 +51,16 @@ $router->get('/authorg', function ($url){
 	echo 'help failed.';
 }
 
-//	var_dump($id);
 });
 
-$router->post('/authorg', function ($id){
-//	var_dump($id);
-	require_once 'addAu.php';
-//	echo 'help';
-//	header( 'authors.html';
-//	header('Location: testAu.html');
-//	exit;
-//	require_once 'testAu.php';
-});
-$router->get('/testAu', function(){
-	require_once 'testAu.html';
+$router->post('/authorg', function ($data){
+	$action = 2;
+	require_once 'repo.php';
 });
 
+$router->get('/addauthor', function(){
+	require_once 'addAuthor.html';
+});
 
 $router->run(); 
 
